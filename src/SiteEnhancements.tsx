@@ -43,20 +43,20 @@ function CookieConsent(){
 
   return <aside className="privacy-banner" role="dialog" aria-labelledby="privacy-title">
     <div className="privacy-banner__copy">
-      <p className="eyebrow" id="privacy-title">Datenschutz-Einstellungen</p>
+      <p className="eyebrow" id="privacy-title">Cookie-Einstellungen</p>
       <p>Diese Website verwendet keine Analyse- oder Marketing-Cookies. Externe Schriftarten von Google werden nur nach Ihrer Zustimmung geladen. Ihre Auswahl wird ausschließlich lokal in Ihrem Browser gespeichert.</p>
       <a href="/datenschutz/">Mehr zum Datenschutz ↗</a>
     </div>
     <div className="privacy-banner__actions">
       <button type="button" className="privacy-button privacy-button--secondary" onClick={()=>save('necessary')}>Nur erforderlich</button>
       <button type="button" className="privacy-button" onClick={()=>save('all')}>Alle akzeptieren</button>
-      {choice && <button type="button" className="privacy-close" onClick={()=>setOpen(false)} aria-label="Datenschutz-Einstellungen schließen">×</button>}
+      {choice && <button type="button" className="privacy-close" onClick={()=>setOpen(false)} aria-label="Cookie-Einstellungen schließen">×</button>}
     </div>
   </aside>
 }
 
 function PrivacySettingsButton(){
-  return <button type="button" className="footer__button" onClick={()=>window.dispatchEvent(new Event('studiohernandez:privacy-settings'))}>Datenschutz-Einstellungen</button>
+  return <button type="button" className="footer__button" onClick={()=>window.dispatchEvent(new Event('studiohernandez:privacy-settings'))}>Cookie-Einstellungen</button>
 }
 
 function FooterLegalLinks(){
@@ -170,10 +170,10 @@ function DatenschutzContent(){
 
     <LegalSection title="4. Externe Schriftarten / Google Fonts">
       <p>Für die typografische Darstellung können Schriftarten des Dienstes Google Fonts geladen werden. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Die Verbindung zu Google wird erst hergestellt, wenn Sie im Datenschutz-Banner ausdrücklich „Alle akzeptieren“ wählen. Dabei kann insbesondere Ihre IP-Adresse an Google übermittelt werden.</p>
-      <p>Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Soweit dabei Informationen auf Ihrem Endgerät gespeichert oder ausgelesen werden, erfolgt dies ebenfalls nur mit Ihrer Einwilligung nach § 25 Abs. 1 TDDDG, soweit diese Vorschrift anwendbar ist. Sie können Ihre Einwilligung jederzeit über „Datenschutz-Einstellungen“ im Footer mit Wirkung für die Zukunft widerrufen.</p>
+      <p>Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Soweit dabei Informationen auf Ihrem Endgerät gespeichert oder ausgelesen werden, erfolgt dies ebenfalls nur mit Ihrer Einwilligung nach § 25 Abs. 1 TDDDG, soweit diese Vorschrift anwendbar ist. Sie können Ihre Einwilligung jederzeit über „Cookie-Einstellungen“ im Footer mit Wirkung für die Zukunft widerrufen.</p>
     </LegalSection>
 
-    <LegalSection title="5. Datenschutz-Einstellungen und lokale Speicherung">
+    <LegalSection title="5. Cookie-Einstellungen und lokale Speicherung">
       <p>Zur Speicherung Ihrer Datenschutzentscheidung wird ausschließlich eine technisch notwendige Information im lokalen Speicher Ihres Browsers (Local Storage) unter dem Schlüssel „studiohernandez-consent-v1“ abgelegt. Sie enthält nur die Auswahl „Alle akzeptieren“ oder „Nur erforderlich“ und dient dazu, Ihre Entscheidung bei weiteren Seitenaufrufen zu berücksichtigen.</p>
       <p>Diese Speicherung ist für die Bereitstellung der von Ihnen gewählten Datenschutzeinstellung erforderlich. Analyse-, Werbe- oder Marketing-Cookies werden derzeit nicht eingesetzt.</p>
     </LegalSection>
