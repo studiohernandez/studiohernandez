@@ -1,64 +1,139 @@
+.site-header{
+  grid-template-columns:max-content minmax(5rem,1fr) auto;
+  column-gap:clamp(1.5rem,3vw,4rem);
+}
+
 .site-header .wordmark--header{
-  gap:1.8rem;
+  display:block;
+  width:max-content;
+  min-width:max-content;
   white-space:nowrap;
 }
 
 .site-header .wordmark--header .wordmark__brand{
   display:inline-flex;
   flex-direction:row;
+  flex-wrap:nowrap;
   align-items:baseline;
-  gap:.3em;
+  gap:.32em;
+  width:max-content;
+  min-width:max-content;
   font-size:clamp(1.45rem,2vw,2.15rem);
-  line-height:.86;
+  line-height:.9;
   letter-spacing:-.055em;
   text-transform:uppercase;
   white-space:nowrap;
 }
 
-.site-header .wordmark--header .wordmark__studio{
-  display:inline;
+.site-header .wordmark--header .wordmark__studio,
+.site-header .wordmark--header .wordmark__name{
+  display:inline-block;
+  flex:0 0 auto;
   font-size:1em;
   line-height:inherit;
   letter-spacing:inherit;
   text-transform:inherit;
+  white-space:nowrap;
+}
+
+.site-header .wordmark--header .wordmark__studio{
   font-weight:400;
 }
 
 .site-header .wordmark--header .wordmark__name{
-  display:inline;
-  font-size:1em;
-  line-height:inherit;
-  letter-spacing:inherit;
-  text-transform:inherit;
   font-weight:700;
 }
 
-.site-header .wordmark--header > .wordmark__meta{
-  display:block;
-  font-size:.6rem;
-  line-height:1.25;
+.header-meta{
+  margin:0;
+  padding-top:.2rem;
+  justify-self:start;
+  align-self:start;
+  font-size:.58rem;
+  line-height:1.2;
   letter-spacing:.1em;
   text-transform:uppercase;
-  font-weight:400;
+  white-space:nowrap;
 }
 
 .wordmark--footer strong{
   white-space:nowrap;
 }
 
+.back-to-top{
+  position:fixed;
+  right:var(--pad);
+  bottom:1.35rem;
+  z-index:40;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  width:7.2rem;
+  padding:.55rem 0 .45rem;
+  border-top:1px solid var(--ink);
+  background:rgba(241,240,235,.9);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  font-size:.6rem;
+  line-height:1;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(.6rem);
+  transition:opacity .25s ease,transform .25s ease,visibility .25s ease;
+}
+
+.back-to-top--visible{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+}
+
+.back-to-top span:last-child{
+  font-size:.9rem;
+  transition:transform .25s ease;
+}
+
+.back-to-top:hover span:last-child{
+  transform:translateY(-.2rem);
+}
+
+@media(max-width:1100px){
+  .header-meta{
+    display:none;
+  }
+
+  .site-header{
+    grid-template-columns:1fr auto;
+  }
+}
+
 @media(max-width:800px){
   .site-header .wordmark--header .wordmark__brand{
-    font-size:clamp(1.25rem,5vw,1.65rem);
+    font-size:clamp(1.1rem,4.5vw,1.45rem);
+  }
+
+  .back-to-top{
+    right:var(--pad);
+    bottom:1rem;
+    width:auto;
+    gap:.55rem;
   }
 }
 
 @media(max-width:480px){
   .site-header .wordmark--header .wordmark__studio,
   .site-header .wordmark--header .wordmark__name{
-    display:inline;
+    display:inline-block;
   }
 
-  .site-header .wordmark--header > .wordmark__meta{
+  .back-to-top span:first-child{
     display:none;
+  }
+
+  .back-to-top{
+    width:1.35rem;
   }
 }
