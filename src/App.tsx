@@ -48,11 +48,8 @@ export default function App(){
 
   return <>
     <header className="site-header">
-      <a href="#top" className="wordmark wordmark--header" aria-label="Studio Hernández, Startseite">
-        <strong>
-          <span className="wordmark__studio">Studio</span>
-          <span className="wordmark__name">Hernández</span>
-        </strong>
+      <a href="#top" className="wordmark wordmark--header" aria-label="STUDIO HERNÁNDEZ, Startseite">
+        <strong className="wordmark__brand"><span className="wordmark__studio">STUDIO</span><span className="wordmark__name">HERNÁNDEZ</span></strong>
         <span className="wordmark__meta">Architektur · Wuppertal</span>
       </a>
       <nav id="navigation" className={menuOpen?'nav nav--open':'nav'} aria-label="Hauptnavigation">
@@ -110,11 +107,11 @@ export default function App(){
           </figure>
           <div className="studio__content">
             <p className="eyebrow">Danyel Hernández<br/>Architekt M.Sc.</p>
-            <p className="studio__intro">Studio Hernández entwickelt Architektur aus dem Bestand heraus.</p>
+            <p className="studio__intro">STUDIO HERNÁNDEZ entwickelt Architektur aus dem Bestand heraus.</p>
             <p>Bestehende Gebäude besitzen Strukturen, Materialien und Geschichten. Mein Ansatz besteht nicht darin, diese zu überdecken, sondern ihre Potenziale zu erkennen und weiterzuentwickeln.</p>
             <div className="vita">
               <div><span>Ausbildung</span><p>Bergische Universität Wuppertal<br/>Universidad de Granada<br/>TU Dortmund</p></div>
-              <div><span>Praxis</span><p>Rocho Architekten<br/>ACMS Architekten<br/>Studio Hernández</p></div>
+              <div><span>Praxis</span><p>Rocho Architekten<br/>ACMS Architekten<br/>STUDIO HERNÁNDEZ</p></div>
             </div>
             <p className="membership">Mitglied der Architektenkammer Nordrhein-Westfalen</p>
           </div>
@@ -132,7 +129,7 @@ export default function App(){
     </main>
 
     <footer>
-      <a href="#top" className="wordmark"><strong>Studio<br/>Hernández</strong></a>
+      <a href="#top" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, nach oben"><strong>STUDIO HERNÁNDEZ</strong></a>
       <div><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
       <div><a href="#top">Nach oben ↑</a><p>© {new Date().getFullYear()}</p></div>
     </footer>
