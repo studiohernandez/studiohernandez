@@ -48,8 +48,12 @@ export default function App(){
 
   return <>
     <header className="site-header">
-      <a href="#top" className="wordmark" aria-label="Studio Hernández, Startseite">
-        <strong>Studio<br/>Hernández</strong><span>Architektur · Wuppertal</span>
+      <a href="#top" className="wordmark wordmark--header" aria-label="Studio Hernández, Startseite">
+        <strong>
+          <span className="wordmark__studio">Studio</span>
+          <span className="wordmark__name">Hernández</span>
+        </strong>
+        <span className="wordmark__meta">Architektur · Wuppertal</span>
       </a>
       <nav id="navigation" className={menuOpen?'nav nav--open':'nav'} aria-label="Hauptnavigation">
         <a href="#projekte" onClick={closeMenu}>Projekte</a>
@@ -65,7 +69,6 @@ export default function App(){
     <main id="top">
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__copy">
-          <p className="eyebrow">Studio Hernández / Architektur</p>
           <h1 id="hero-title">Architektur<br/>für den <em>Bestand.</em></h1>
           <div className="hero__footer">
             <p>Umbau · Erweiterung · Aufstockung · Nutzungsänderung</p>
@@ -103,15 +106,15 @@ export default function App(){
         <div className="studio__grid">
           <figure>
             <img src={imageUrl('portrait.png')} alt="Danyel Hernández, Architekt" loading="lazy"/>
-            <figcaption>Porträt / Studio Hernández</figcaption>
+            <figcaption>Porträt / Danyel Hernández</figcaption>
           </figure>
           <div className="studio__content">
             <p className="eyebrow">Danyel Hernández<br/>Architekt M.Sc.</p>
             <p className="studio__intro">Studio Hernández entwickelt Architektur aus dem Bestand heraus.</p>
             <p>Bestehende Gebäude besitzen Strukturen, Materialien und Geschichten. Mein Ansatz besteht nicht darin, diese zu überdecken, sondern ihre Potenziale zu erkennen und weiterzuentwickeln.</p>
             <div className="vita">
-              <div><span>Ausbildung</span><p>TU Dortmund<br/>Universidad de Granada<br/>Bergische Universität Wuppertal</p></div>
-              <div><span>Praxis</span><p>ACMS Architekten<br/>Studio Hernández</p></div>
+              <div><span>Ausbildung</span><p>Bergische Universität Wuppertal<br/>Universidad de Granada<br/>TU Dortmund</p></div>
+              <div><span>Praxis</span><p>Rocho Architekten<br/>ACMS Architekten<br/>Studio Hernández</p></div>
             </div>
             <p className="membership">Mitglied der Architektenkammer Nordrhein-Westfalen</p>
           </div>
