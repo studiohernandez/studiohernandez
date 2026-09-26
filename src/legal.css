@@ -1,9 +1,10 @@
 /* Rechtliche Seiten, Footer-Links und Datenschutz-Banner */
 footer{grid-template-columns:1.2fr 1fr 1fr .75fr;gap:2rem}
-footer .footer__legal{display:flex;flex-direction:column;gap:.45rem;text-align:left;grid-column:3}
+footer .footer__legal{display:grid;grid-template-columns:1fr;grid-auto-flow:row;justify-items:start;align-content:start;row-gap:.45rem;text-align:left;grid-column:3}
 footer>div:nth-of-type(2):not(.footer__legal){grid-column:4;text-align:right}
 footer .footer__end{grid-column:4;text-align:right}
-.footer__button{appearance:none;border:0;background:transparent;color:inherit;padding:0;font:inherit;letter-spacing:inherit;text-transform:inherit;text-align:left;cursor:pointer}
+.footer__button{appearance:none;border:0;background:transparent;color:inherit;padding:0;margin:0;display:block;width:max-content;font:inherit;letter-spacing:inherit;text-transform:inherit;text-align:left;line-height:inherit;cursor:pointer}
+.footer__legal a{display:block;width:max-content}
 .footer__legal a,.footer__button{opacity:.72;transition:opacity .25s ease}
 .footer__legal a:hover,.footer__button:hover{opacity:1}
 
