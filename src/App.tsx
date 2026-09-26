@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import HausC from './HausC'
 
 const projects = [
-  { number:'01', title:'Haus C', type:'Aufstockung', description:'Aufstockung eines Einfamilienhauses', location:'Wuppertal', year:'2024–2026', image:'haus-c.png', className:'project--wide' },
+  { number:'01', title:'Haus C', type:'Aufstockung', description:'Aufstockung eines Einfamilienhauses', location:'Wuppertal', year:'2024–2026', image:'haus-c.png', className:'project--wide', href:'/projekte/haus-c/' },
   { number:'02', title:'Haus H33', type:'Erweiterung', description:'Erweiterung und Neuordnung eines Wohnhauses', location:'Wuppertal', year:'In Planung', image:'haus-h33.png', className:'project--tall' },
   { number:'03', title:'Casa del Llano', type:'Wohnhaus', description:'Ein Haus zwischen Meer und Wüstenlandschaft', location:'Carboneras · Almería', year:'Studie', image:'casa-llano.png', className:'project--landscape' },
 ]
@@ -20,7 +21,7 @@ function ArrowLink({href,children}:{href:string;children:React.ReactNode}){
 }
 
 function ProjectCard({project}:{project:typeof projects[number]}){
-  return <article className={`project ${project.className}`}>
+  const content=<>
     <div className="project__image" aria-label={`${project.title} ansehen`}>
       <img src={imageUrl(project.image)} alt={`${project.title}, ${project.type}`} loading="lazy" />
     </div>
@@ -30,6 +31,10 @@ function ProjectCard({project}:{project:typeof projects[number]}){
       <div><p>{project.location}</p><p>{project.year}</p></div>
       <span aria-hidden="true">↗</span>
     </div>
+  </>
+
+  return <article className={`project ${project.className}`}>
+    {project.href ? <a className="project__link" href={project.href}>{content}</a> : content}
   </article>
 }
 
@@ -42,7 +47,7 @@ function ServiceItem({service}:{service:string[]}){
   </article>
 }
 
-export default function App(){
+function HomePage(){
   const [menuOpen,setMenuOpen]=useState(false)
   const [showBackToTop,setShowBackToTop]=useState(false)
   const closeMenu=()=>setMenuOpen(false)
@@ -146,4 +151,9 @@ export default function App(){
       <div><a href="#top">Nach oben ↑</a><p>© {new Date().getFullYear()}</p></div>
     </footer>
   </>
+}
+
+export default function App(){
+  const path=window.location.pathname.replace(/\/+$/,'') || '/'
+  return path==='/projekte/haus-c' ? <HausC/> : <HomePage/>
 }
