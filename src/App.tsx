@@ -19,8 +19,9 @@ const projects = [
     description: 'Erweiterung und Neuordnung eines Wohnhauses',
     location: 'Wuppertal',
     year: 'In Planung',
-    image: 'haus-h33.png',
+    image: 'projects/haus-h33/photos/02-zufahrt.png',
     className: 'project--tall',
+    href: '/projekte/haus-h33/',
   },
   {
     number: '03',
@@ -42,7 +43,9 @@ const services = [
 ]
 
 const imageUrl=(name:string)=>`/img/${name}`
-const projectImageUrl=(name:string)=>`/img/projects/haus-c/${name}`
+const hausCImageUrl=(name:string)=>`/img/projects/haus-c/${name}`
+const hausH33PhotoUrl=(name:string)=>`/img/projects/haus-h33/photos/${name}`
+const hausH33PlanUrl=(name:string)=>`/img/projects/haus-h33/plans/${name}`
 
 function ArrowLink({href,children}:{href:string;children:React.ReactNode}){
   return <a className="arrow-link" href={href}>{children}<span aria-hidden="true">↗</span></a>
@@ -236,6 +239,14 @@ function ProjectImage({src, alt, className='', fallback='haus-c.png'}:{src:strin
   return <img className={className} src={imageSrc} alt={alt} loading="lazy" onError={()=>setImageSrc(imageUrl(fallback))} />
 }
 
+function PlanFigure({src,alt}:{src:string;alt:string}){
+  return <figure className="project-page__plan">
+    <a href={src} target="_blank" rel="noreferrer" aria-label={`${alt} in voller Größe öffnen`}>
+      <img src={src} alt={alt} loading="lazy"/>
+    </a>
+  </figure>
+}
+
 function HausCPage(){
   return <>
     <main id="top" className="project-page">
@@ -245,11 +256,11 @@ function HausCPage(){
           <h1>HAUS C</h1>
           <div className="project-page__meta">
             <p>Aufstockung eines Wohnhauses</p>
-            <p>Wuppertal · 2024–2026</p>
+            <p>Wuppertal · In Ausführung</p>
           </div>
         </div>
         <figure className="project-page__hero-image">
-          <ProjectImage src={projectImageUrl('01-hero-baustelle.jpeg')} alt="HAUS C – Baustellenaufnahme der Aufstockung"/>
+          <ProjectImage src={hausCImageUrl('01-hero-baustelle.jpeg')} alt="HAUS C – Baustellenaufnahme der Aufstockung"/>
         </figure>
       </section>
 
@@ -259,51 +270,120 @@ function HausCPage(){
 
       <section className="project-page__block section">
         <div className="project-page__label">BESTAND / VOR DEM UMBAU</div>
-        <figure className="project-page__full-image">
-          <ProjectImage src={projectImageUrl('02-bestand.jpeg')} alt="HAUS C – Bestand vor dem Umbau"/>
-        </figure>
+        <figure className="project-page__full-image"><ProjectImage src={hausCImageUrl('02-bestand.jpeg')} alt="HAUS C – Bestand vor dem Umbau"/></figure>
       </section>
 
       <section className="project-page__block section">
         <div className="project-page__label">ENTWURF / AUFSTOCKUNG UND ERWEITERUNG</div>
-        <figure className="project-page__full-image">
-          <ProjectImage src={projectImageUrl('03-entwurf-rendering.jpeg')} alt="HAUS C – Rendering der Aufstockung"/>
-        </figure>
+        <figure className="project-page__full-image"><ProjectImage src={hausCImageUrl('03-entwurf-rendering.jpeg')} alt="HAUS C – Rendering der Aufstockung"/></figure>
       </section>
 
       <section className="project-page__block section">
         <div className="project-page__label">HOLZRAHMENBAU</div>
         <div className="project-page__two-up">
-          <figure><ProjectImage src={projectImageUrl('04-konstruktion-01.jpeg')} alt="HAUS C – Konstruktion 1"/></figure>
-          <figure><ProjectImage src={projectImageUrl('05-konstruktion-02.jpeg')} alt="HAUS C – Konstruktion 2"/></figure>
+          <figure><ProjectImage src={hausCImageUrl('04-konstruktion-01.jpeg')} alt="HAUS C – Konstruktion 1"/></figure>
+          <figure><ProjectImage src={hausCImageUrl('05-konstruktion-02.jpeg')} alt="HAUS C – Konstruktion 2"/></figure>
         </div>
         <p className="project-page__caption">Leichte Aufstockung auf bestehender Tragstruktur.</p>
       </section>
 
       <section className="project-page__block section">
         <div className="project-page__label">BAUPROZESS</div>
-        <figure className="project-page__full-image">
-          <ProjectImage src={projectImageUrl('06-bauprozess.jpeg')} alt="HAUS C – Bauprozess mit Personen auf der Konstruktion"/>
-        </figure>
+        <figure className="project-page__full-image"><ProjectImage src={hausCImageUrl('06-bauprozess.jpeg')} alt="HAUS C – Bauprozess mit Personen auf der Konstruktion"/></figure>
       </section>
 
       <section className="project-page__block section">
         <div className="project-page__label">BAUPROZESS / DRAUFSICHT</div>
-        <figure className="project-page__full-image">
-          <ProjectImage src={projectImageUrl('07-drohnenaufnahme.jpeg')} alt="HAUS C – Drohnenaufnahme"/>
-        </figure>
+        <figure className="project-page__full-image"><ProjectImage src={hausCImageUrl('07-drohnenaufnahme.jpeg')} alt="HAUS C – Drohnenaufnahme"/></figure>
       </section>
 
       <section className="project-page__block section section--last">
         <div className="project-page__label">BAUSTAND 2026</div>
-        <figure className="project-page__full-image">
-          <ProjectImage src={projectImageUrl('08-baustand-2026.jpeg')} alt="HAUS C – aktueller Baustand"/>
-        </figure>
+        <figure className="project-page__full-image"><ProjectImage src={hausCImageUrl('08-baustand-2026.jpeg')} alt="HAUS C – aktueller Baustand"/></figure>
       </section>
 
       <section className="project-page__next section">
         <ArrowLink href="/">Zurück zur Übersicht</ArrowLink>
-        <ArrowLink href="/">Nächstes Projekt · HAUS H33</ArrowLink>
+        <ArrowLink href="/projekte/haus-h33/">Nächstes Projekt · HAUS H33</ArrowLink>
+      </section>
+    </main>
+    <BackToTop/>
+    <Footer/>
+  </>
+}
+
+function HausH33Page(){
+  return <>
+    <main id="top" className="project-page project-page--h33">
+      <section className="project-page__hero">
+        <div className="project-page__head">
+          <p className="eyebrow">02 / Projekt</p>
+          <h1>HAUS H33</h1>
+          <div className="project-page__meta">
+            <p>Erweiterung und Neuordnung eines Wohnhauses</p>
+            <p>Wuppertal · In Planung</p>
+          </div>
+        </div>
+        <figure className="project-page__hero-image">
+          <ProjectImage src={hausH33PhotoUrl('01-strasse.png')} fallback="haus-h33.png" alt="HAUS H33 – Bestand im Straßenraum"/>
+        </figure>
+      </section>
+
+      <section className="project-page__intro section">
+        <p>Das Projekt untersucht die Weiterentwicklung eines bestehenden Wohnhauses in Wuppertal. Im Mittelpunkt stehen die Neuordnung des Bestands und die Möglichkeiten einer Erweiterung. Das Projekt befindet sich derzeit in Planung.</p>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">BESTAND / ZUFAHRT UND ERSCHLIESSUNG</div>
+        <div className="project-page__two-up">
+          <figure><ProjectImage src={hausH33PhotoUrl('02-zufahrt.png')} fallback="haus-h33.png" alt="HAUS H33 – Zufahrt"/></figure>
+          <figure><ProjectImage src={hausH33PhotoUrl('03-treppenaufgang.png')} fallback="haus-h33.png" alt="HAUS H33 – seitlicher Treppenaufgang"/></figure>
+        </div>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">BESTAND / GARTENSEITE</div>
+        <figure className="project-page__full-image"><ProjectImage src={hausH33PhotoUrl('05-gartenansicht.png')} fallback="haus-h33.png" alt="HAUS H33 – Gartenansicht"/></figure>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">TOPOGRAFIE / SEITEN- UND KELLERZUGANG</div>
+        <div className="project-page__two-up">
+          <figure><ProjectImage src={hausH33PhotoUrl('04-garten-seitlich.png')} fallback="haus-h33.png" alt="HAUS H33 – seitliche Gartenansicht"/></figure>
+          <figure><ProjectImage src={hausH33PhotoUrl('06-kellerabgang.png')} fallback="haus-h33.png" alt="HAUS H33 – Kellerabgang"/></figure>
+        </div>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">BESTAND / GARTEN FRONTAL</div>
+        <figure className="project-page__full-image"><ProjectImage src={hausH33PhotoUrl('07-garten-frontal.png')} fallback="haus-h33.png" alt="HAUS H33 – frontale Gartenansicht"/></figure>
+      </section>
+
+      <section className="project-page__block section project-page__plans-section">
+        <div className="project-page__label">BESTANDSPLÄNE / SCHNITT</div>
+        <PlanFigure src={hausH33PlanUrl('01-bestand-schnitt-original.png')} alt="HAUS H33 – Bestandschnitt"/>
+        <p className="project-page__caption">Originale Bestandsunterlage · zur vergrößerten Ansicht anklicken.</p>
+      </section>
+
+      <section className="project-page__block section project-page__plans-section">
+        <div className="project-page__label">BESTANDSPLÄNE / ANSICHTEN</div>
+        <div className="project-page__plan-grid">
+          <PlanFigure src={hausH33PlanUrl('02-bestand-ansichten-west-original.png')} alt="HAUS H33 – Bestandsansichten West"/>
+          <PlanFigure src={hausH33PlanUrl('03-bestand-ansichten-sued-ost-original.png')} alt="HAUS H33 – Bestandsansichten Süd und Ost"/>
+        </div>
+      </section>
+
+      <section className="project-page__block section section--last project-page__plans-section">
+        <div className="project-page__label">BESTANDSPLÄNE / GRUNDRISSE</div>
+        <div className="project-page__plan-grid">
+          <PlanFigure src={hausH33PlanUrl('04-bestand-grundriss-kellergeschoss-original.png')} alt="HAUS H33 – Bestandsgrundriss Kellergeschoss"/>
+          <PlanFigure src={hausH33PlanUrl('05-bestand-grundriss-erdgeschoss-original.png')} alt="HAUS H33 – Bestandsgrundriss Erdgeschoss"/>
+        </div>
+      </section>
+
+      <section className="project-page__next section">
+        <ArrowLink href="/projekte/haus-c/">Vorheriges Projekt · HAUS C</ArrowLink>
+        <ArrowLink href="/#projekte">Zurück zur Übersicht</ArrowLink>
       </section>
     </main>
     <BackToTop/>
@@ -320,9 +400,10 @@ export default function App(){
   },[])
 
   const isHausCPage = pathname === '/projekte/haus-c'
+  const isHausH33Page = pathname === '/projekte/haus-h33'
 
   return <>
     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
-    {isHausCPage ? <HausCPage/> : <HomePage/>}
+    {isHausCPage ? <HausCPage/> : isHausH33Page ? <HausH33Page/> : <HomePage/>}
   </>
 }
