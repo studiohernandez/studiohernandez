@@ -1,10 +1,37 @@
-import { useEffect, useState } from 'react'
-import HausC from './HausC'
+import { useEffect, useMemo, useState } from 'react'
 
 const projects = [
-  { number:'01', title:'Haus C', type:'Aufstockung', description:'Aufstockung eines Einfamilienhauses', location:'Wuppertal', year:'2024–2026', image:'haus-c.png', className:'project--wide', href:'/projekte/haus-c/' },
-  { number:'02', title:'Haus H33', type:'Erweiterung', description:'Erweiterung und Neuordnung eines Wohnhauses', location:'Wuppertal', year:'In Planung', image:'haus-h33.png', className:'project--tall' },
-  { number:'03', title:'Casa del Llano', type:'Wohnhaus', description:'Ein Haus zwischen Meer und Wüstenlandschaft', location:'Carboneras · Almería', year:'Studie', image:'casa-llano.png', className:'project--landscape' },
+  {
+    number: '01',
+    title: 'Haus C',
+    type: 'Aufstockung',
+    description: 'Aufstockung eines Einfamilienhauses',
+    location: 'Wuppertal',
+    year: '2024–2026',
+    image: 'haus-c.png',
+    className: 'project--wide',
+    href: '/projekte/haus-c/',
+  },
+  {
+    number: '02',
+    title: 'Haus H33',
+    type: 'Erweiterung',
+    description: 'Erweiterung und Neuordnung eines Wohnhauses',
+    location: 'Wuppertal',
+    year: 'In Planung',
+    image: 'haus-h33.png',
+    className: 'project--tall',
+  },
+  {
+    number: '03',
+    title: 'Casa del Llano',
+    type: 'Wohnhaus',
+    description: 'Ein Haus zwischen Meer und Wüstenlandschaft',
+    location: 'Carboneras · Almería',
+    year: 'Studie',
+    image: 'casa-llano.png',
+    className: 'project--landscape',
+  },
 ]
 
 const services = [
@@ -15,13 +42,14 @@ const services = [
 ]
 
 const imageUrl=(name:string)=>`/img/${name}`
+const projectImageUrl=(name:string)=>`/img/projects/haus-c/${name}`
 
 function ArrowLink({href,children}:{href:string;children:React.ReactNode}){
   return <a className="arrow-link" href={href}>{children}<span aria-hidden="true">↗</span></a>
 }
 
 function ProjectCard({project}:{project:typeof projects[number]}){
-  const content=<>
+  const inner = <>
     <div className="project__image" aria-label={`${project.title} ansehen`}>
       <img src={imageUrl(project.image)} alt={`${project.title}, ${project.type}`} loading="lazy" />
     </div>
@@ -34,7 +62,7 @@ function ProjectCard({project}:{project:typeof projects[number]}){
   </>
 
   return <article className={`project ${project.className}`}>
-    {project.href ? <a className="project__link" href={project.href}>{content}</a> : content}
+    {project.href ? <a className="project__link" href={project.href}>{inner}</a> : inner}
   </article>
 }
 
@@ -47,11 +75,35 @@ function ServiceItem({service}:{service:string[]}){
   </article>
 }
 
-function HomePage(){
-  const [menuOpen,setMenuOpen]=useState(false)
-  const [showBackToTop,setShowBackToTop]=useState(false)
+function Header({menuOpen,setMenuOpen}:{menuOpen:boolean;setMenuOpen:(v:boolean)=>void}) {
   const closeMenu=()=>setMenuOpen(false)
+  return <header className="site-header">
+    <a href="/" className="wordmark wordmark--header" aria-label="STUDIO HERNÁNDEZ, Startseite">
+      <strong className="wordmark__brand"><span className="wordmark__studio">STUDIO</span><span className="wordmark__name">HERNÁNDEZ</span></strong>
+    </a>
+    <p className="header-meta">ARCHITEKTUR · WUPPERTAL</p>
+    <nav id="navigation" className={menuOpen?'nav nav--open':'nav'} aria-label="Hauptnavigation">
+      <a href="/#projekte" onClick={closeMenu}>Projekte</a>
+      <a href="/#studio" onClick={closeMenu}>Studio</a>
+      <a href="/#leistungen" onClick={closeMenu}>Leistungen</a>
+      <a href="/#kontakt" onClick={closeMenu}>Kontakt</a>
+    </nav>
+    <button className="menu-button" onClick={()=>setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="navigation">
+      <span>{menuOpen?'Schließen':'Menü'}</span>
+    </button>
+  </header>
+}
 
+function Footer(){
+  return <footer>
+    <a href="#top" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, nach oben"><strong>STUDIO HERNÁNDEZ</strong></a>
+    <div><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
+    <div><a href="#top">Nach oben ↑</a><p>© {new Date().getFullYear()}</p></div>
+  </footer>
+}
+
+function BackToTop(){
+  const [showBackToTop,setShowBackToTop]=useState(false)
   useEffect(()=>{
     const handleScroll=()=>setShowBackToTop(window.scrollY > Math.max(420, window.innerHeight * .55))
     handleScroll()
@@ -59,23 +111,13 @@ function HomePage(){
     return ()=>window.removeEventListener('scroll', handleScroll)
   },[])
 
-  return <>
-    <header className="site-header">
-      <a href="#top" className="wordmark wordmark--header" aria-label="STUDIO HERNÁNDEZ, Startseite">
-        <strong className="wordmark__brand"><span className="wordmark__studio">STUDIO</span><span className="wordmark__name">HERNÁNDEZ</span></strong>
-      </a>
-      <p className="header-meta">ARCHITEKTUR · WUPPERTAL</p>
-      <nav id="navigation" className={menuOpen?'nav nav--open':'nav'} aria-label="Hauptnavigation">
-        <a href="#projekte" onClick={closeMenu}>Projekte</a>
-        <a href="#studio" onClick={closeMenu}>Studio</a>
-        <a href="#leistungen" onClick={closeMenu}>Leistungen</a>
-        <a href="#kontakt" onClick={closeMenu}>Kontakt</a>
-      </nav>
-      <button className="menu-button" onClick={()=>setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="navigation">
-        <span>{menuOpen?'Schließen':'Menü'}</span>
-      </button>
-    </header>
+  return <a className={showBackToTop?'back-to-top back-to-top--visible':'back-to-top'} href="#top" aria-label="Nach oben scrollen">
+    <span>NACH OBEN</span><span aria-hidden="true">↑</span>
+  </a>
+}
 
+function HomePage(){
+  return <>
     <main id="top">
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__copy">
@@ -140,20 +182,103 @@ function HomePage(){
         </div>
       </section>
     </main>
+    <BackToTop/>
+    <Footer/>
+  </>
+}
 
-    <a className={showBackToTop?'back-to-top back-to-top--visible':'back-to-top'} href="#top" aria-label="Nach oben scrollen">
-      <span>NACH OBEN</span><span aria-hidden="true">↑</span>
-    </a>
+function ProjectImage({src, alt, className='', fallback='haus-c.png'}:{src:string;alt:string;className?:string;fallback?:string}){
+  const [imageSrc,setImageSrc]=useState(src)
+  return <img className={className} src={imageSrc} alt={alt} loading="lazy" onError={()=>setImageSrc(imageUrl(fallback))} />
+}
 
-    <footer>
-      <a href="#top" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, nach oben"><strong>STUDIO HERNÁNDEZ</strong></a>
-      <div><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
-      <div><a href="#top">Nach oben ↑</a><p>© {new Date().getFullYear()}</p></div>
-    </footer>
+function HausCPage(){
+  return <>
+    <main id="top" className="project-page">
+      <section className="project-page__hero">
+        <div className="project-page__head">
+          <p className="eyebrow">01 / Projekt</p>
+          <h1>HAUS C</h1>
+          <div className="project-page__meta">
+            <p>Aufstockung eines Wohnhauses</p>
+            <p>Wuppertal · 2024–2026</p>
+          </div>
+        </div>
+        <figure className="project-page__hero-image">
+          <ProjectImage src={projectImageUrl('01-hero-baustelle.jpeg')} alt="HAUS C – Baustellenaufnahme der Aufstockung"/>
+        </figure>
+      </section>
+
+      <section className="project-page__intro section">
+        <p>Die Aufstockung erweitert das bestehende Wohnhaus um ein zusätzliches Geschoss in Holzrahmenbauweise. Der Entwurf entwickelt den Bestand weiter und schafft neue Wohnflächen mit großzügigen Außenbezügen.</p>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">BESTAND / VOR DEM UMBAU</div>
+        <figure className="project-page__full-image">
+          <ProjectImage src={projectImageUrl('02-bestand.jpeg')} alt="HAUS C – Bestand vor dem Umbau"/>
+        </figure>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">ENTWURF / AUFSTOCKUNG UND ERWEITERUNG</div>
+        <figure className="project-page__full-image">
+          <ProjectImage src={projectImageUrl('03-entwurf-rendering.jpeg')} alt="HAUS C – Rendering der Aufstockung"/>
+        </figure>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">HOLZRAHMENBAU</div>
+        <div className="project-page__two-up">
+          <figure><ProjectImage src={projectImageUrl('04-konstruktion-01.jpeg')} alt="HAUS C – Konstruktion 1"/></figure>
+          <figure><ProjectImage src={projectImageUrl('05-konstruktion-02.jpeg')} alt="HAUS C – Konstruktion 2"/></figure>
+        </div>
+        <p className="project-page__caption">Leichte Aufstockung auf bestehender Tragstruktur.</p>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">BAUPROZESS</div>
+        <figure className="project-page__full-image">
+          <ProjectImage src={projectImageUrl('06-bauprozess.jpeg')} alt="HAUS C – Bauprozess mit Personen auf der Konstruktion"/>
+        </figure>
+      </section>
+
+      <section className="project-page__block section">
+        <div className="project-page__label">BAUPROZESS / DRAUFSICHT</div>
+        <figure className="project-page__full-image">
+          <ProjectImage src={projectImageUrl('07-drohnenaufnahme.jpeg')} alt="HAUS C – Drohnenaufnahme"/>
+        </figure>
+      </section>
+
+      <section className="project-page__block section section--last">
+        <div className="project-page__label">BAUSTAND 2026</div>
+        <figure className="project-page__full-image">
+          <ProjectImage src={projectImageUrl('08-baustand-2026.jpeg')} alt="HAUS C – aktueller Baustand"/>
+        </figure>
+      </section>
+
+      <section className="project-page__next section">
+        <ArrowLink href="/">Zurück zur Übersicht</ArrowLink>
+        <ArrowLink href="/">Nächstes Projekt · HAUS H33</ArrowLink>
+      </section>
+    </main>
+    <BackToTop/>
+    <Footer/>
   </>
 }
 
 export default function App(){
-  const path=window.location.pathname.replace(/\/+$/,'') || '/'
-  return path==='/projekte/haus-c' ? <HausC/> : <HomePage/>
+  const [menuOpen,setMenuOpen]=useState(false)
+  const pathname = useMemo(()=>{
+    if(typeof window === 'undefined') return '/'
+    const p = window.location.pathname || '/'
+    return p.endsWith('/') && p.length > 1 ? p.slice(0,-1) : p
+  },[])
+
+  const isHausCPage = pathname === '/projekte/haus-c'
+
+  return <>
+    <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
+    {isHausCPage ? <HausCPage/> : <HomePage/>}
+  </>
 }
