@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const projects = [
   { number:'01', title:'Haus C', type:'Aufstockung', description:'Aufstockung eines Einfamilienhauses', location:'Wuppertal', year:'2024–2026', image:'haus-c.png', className:'project--wide' },
@@ -44,14 +44,22 @@ function ServiceItem({service}:{service:string[]}){
 
 export default function App(){
   const [menuOpen,setMenuOpen]=useState(false)
+  const [showBackToTop,setShowBackToTop]=useState(false)
   const closeMenu=()=>setMenuOpen(false)
+
+  useEffect(()=>{
+    const handleScroll=()=>setShowBackToTop(window.scrollY > Math.max(420, window.innerHeight * .55))
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive:true })
+    return ()=>window.removeEventListener('scroll', handleScroll)
+  },[])
 
   return <>
     <header className="site-header">
       <a href="#top" className="wordmark wordmark--header" aria-label="STUDIO HERNÁNDEZ, Startseite">
         <strong className="wordmark__brand"><span className="wordmark__studio">STUDIO</span><span className="wordmark__name">HERNÁNDEZ</span></strong>
-        <span className="wordmark__meta">Architektur · Wuppertal</span>
       </a>
+      <p className="header-meta">ARCHITEKTUR · WUPPERTAL</p>
       <nav id="navigation" className={menuOpen?'nav nav--open':'nav'} aria-label="Hauptnavigation">
         <a href="#projekte" onClick={closeMenu}>Projekte</a>
         <a href="#studio" onClick={closeMenu}>Studio</a>
@@ -127,6 +135,10 @@ export default function App(){
         </div>
       </section>
     </main>
+
+    <a className={showBackToTop?'back-to-top back-to-top--visible':'back-to-top'} href="#top" aria-label="Nach oben scrollen">
+      <span>NACH OBEN</span><span aria-hidden="true">↑</span>
+    </a>
 
     <footer>
       <a href="#top" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, nach oben"><strong>STUDIO HERNÁNDEZ</strong></a>
