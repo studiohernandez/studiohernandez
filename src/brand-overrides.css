@@ -1,0 +1,56 @@
+.site-header .wordmark--header{
+  gap:1.8rem;
+}
+
+.site-header .wordmark--header strong{
+  display:flex;
+  flex-direction:column;
+  font-size:clamp(1.45rem,2vw,2.15rem);
+  line-height:.86;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+}
+
+.site-header .wordmark--header strong .wordmark__studio{
+  display:block;
+  font-size:1em;
+  line-height:inherit;
+  letter-spacing:inherit;
+  text-transform:inherit;
+  font-weight:400;
+}
+
+.site-header .wordmark--header strong .wordmark__name{
+  display:block;
+  font-size:1em;
+  line-height:inherit;
+  letter-spacing:inherit;
+  text-transform:inherit;
+  font-weight:700;
+}
+
+.site-header .wordmark--header > .wordmark__meta{
+  display:block;
+  font-size:.6rem;
+  line-height:1.25;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:400;
+}
+
+@media(max-width:800px){
+  .site-header .wordmark--header strong{
+    font-size:clamp(1.25rem,5vw,1.65rem);
+  }
+}
+
+@media(max-width:480px){
+  .site-header .wordmark--header strong .wordmark__studio,
+  .site-header .wordmark--header strong .wordmark__name{
+    display:block;
+  }
+
+  .site-header .wordmark--header > .wordmark__meta{
+    display:none;
+  }
+}
