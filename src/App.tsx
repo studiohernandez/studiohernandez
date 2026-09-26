@@ -35,10 +35,10 @@ const projects = [
 ]
 
 const services = [
-  ['01','Bauen im Bestand','Sanierung, Umbau und Weiterentwicklung bestehender Gebäude.'],
-  ['02','Aufstockung & Erweiterung','Neue Flächen durch Weiterbauen vorhandener Strukturen.'],
-  ['03','Nutzungsänderung','Entwicklung neuer Nutzungsmöglichkeiten und Begleitung durch das Genehmigungsverfahren.'],
-  ['04','Machbarkeit & Genehmigung','Baurechtliche Prüfung, Entwurf und Bauantrag.'],
+  ['01','Umbau & Weiterbau','Neuordnung, Sanierung und Weiterentwicklung bestehender Gebäude.','umbau'],
+  ['02','Aufstockung & Erweiterung','Zusätzliche Wohn- oder Nutzflächen durch Weiterbauen am Bestand.','erweiterung'],
+  ['03','Genehmigung & Nutzungsänderung','Baurechtliche Prüfung, Bauantrag und Begleitung von Nutzungsänderungen.','genehmigung'],
+  ['04','Förderberatung Wohnen','Beratung zu Fördermöglichkeiten und zur Wohnraumförderung NRW für Vorhaben außerhalb der Stadt Remscheid.','foerderung'],
 ]
 
 const imageUrl=(name:string)=>`/img/${name}`
@@ -66,9 +66,53 @@ function ProjectCard({project}:{project:typeof projects[number]}){
   </article>
 }
 
+function ServiceIcon({type}:{type:string}){
+  const common={
+    width:'124',
+    height:'92',
+    viewBox:'0 0 124 92',
+    fill:'none',
+    stroke:'currentColor',
+    strokeWidth:1.25,
+    strokeLinecap:'square' as const,
+    strokeLinejoin:'miter' as const,
+    style:{width:'7.75rem',height:'5.75rem',opacity:.72},
+  }
+
+  if(type==='umbau') return <svg {...common} aria-hidden="true">
+    <rect x="9" y="30" width="48" height="43"/>
+    <path d="M57 44h43v29H57"/>
+    <path d="M57 54h43" strokeDasharray="3 4" opacity=".55"/>
+    <path d="M21 51h23M32.5 39.5v23"/>
+  </svg>
+
+  if(type==='erweiterung') return <svg {...common} aria-hidden="true">
+    <rect x="10" y="41" width="48" height="32"/>
+    <rect x="24" y="17" width="34" height="24"/>
+    <rect x="58" y="49" width="39" height="24"/>
+    <path d="M72 36V17m-5 5 5-5 5 5"/>
+    <path d="M82 61h25m-5-5 5 5-5 5"/>
+  </svg>
+
+  if(type==='genehmigung') return <svg {...common} aria-hidden="true">
+    <rect x="9" y="16" width="76" height="58"/>
+    <path d="M36 16v58M36 43h49M58 43v31"/>
+    <path d="M17 55h11M17 61h11" opacity=".6"/>
+    <path d="M93 52l7 7 15-19"/>
+    <path d="M91 68h25" opacity=".6"/>
+  </svg>
+
+  return <svg {...common} aria-hidden="true">
+    <path d="M9 44 35 21l26 23v30H9Z"/>
+    <path d="M29 74V55h13v19"/>
+    <circle cx="91" cy="49" r="20"/>
+    <path d="M99 37c-3-2-7-3-11-1-6 2-9 7-9 13s3 11 9 13c4 2 8 1 11-1M74 46h18M74 52h16"/>
+  </svg>
+}
+
 function ServiceItem({service}:{service:string[]}){
   return <article className="service">
-    <div className="service__diagram" aria-hidden="true"><span/><span/></div>
+    <div className="service__diagram"><ServiceIcon type={service[3]}/></div>
     <p className="eyebrow">{service[0]}</p>
     <h3>{service[1]}</h3>
     <p>{service[2]}</p>
