@@ -24,7 +24,7 @@ const SEO_PAGES: Record<string, SeoConfig> = {
     description: 'Aufstockung eines Wohnhauses in Wuppertal in Holzrahmenbauweise – ein Projekt von STUDIO HERNÁNDEZ zum Weiterbauen im Bestand.',
     canonicalPath: '/projekte/haus-c/',
     robots: 'index,follow,max-image-preview:large',
-    image: `${BASE_URL}/img/projects/haus-c/01-hero-baustelle.jpeg`,
+    image: `${BASE_URL}/img/projects/haus-c/01-hero-baustelle-aktuell.webp`,
   },
   '/projekte/haus-h33': {
     title: 'HAUS H33 – Erweiterung in Wuppertal | STUDIO HERNÁNDEZ',
