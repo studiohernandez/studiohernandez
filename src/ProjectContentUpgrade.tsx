@@ -16,6 +16,9 @@ export default function ProjectContentUpgrade(){
 
     if(path==='/projekte/haus-h33'){
       document.querySelectorAll<HTMLElement>('.project-page__plans-section').forEach(section=>section.remove())
+      const blocks=document.querySelectorAll<HTMLElement>('.project-page--h33 .project-page__block')
+      blocks.forEach(block=>block.classList.remove('section--last'))
+      blocks[blocks.length-1]?.classList.add('section--last')
     }
   },[])
 
