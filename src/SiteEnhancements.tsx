@@ -5,6 +5,10 @@ import App from './App'
 const CONSENT_KEY='studiohernandez-consent-v1'
 const FONT_LINK_ID='studiohernandez-google-fonts'
 
+function BrandName({className=''}:{className?:string}){
+  return <span className={`brand-name ${className}`.trim()} aria-label="STUDIO HERNÁNDEZ"><span className="brand-name__studio">STUDIO</span><span className="brand-name__hernandez">HERNÁNDEZ</span></span>
+}
+
 function loadExternalFonts(){
   if(document.getElementById(FONT_LINK_ID)) return
   const link=document.createElement('link')
@@ -73,7 +77,7 @@ function FooterLegalLinks(){
 function LegalHeader(){
   return <header className="site-header legal-header">
     <a href="/" className="wordmark wordmark--header" aria-label="STUDIO HERNÁNDEZ, Startseite">
-      <strong className="wordmark__brand"><span className="wordmark__studio">STUDIO</span><span className="wordmark__name">HERNÁNDEZ</span></strong>
+      <strong className="wordmark__brand"><BrandName className="brand-name--header"/></strong>
     </a>
     <p className="header-meta">ARCHITEKTUR · WUPPERTAL</p>
     <nav className="nav" aria-label="Hauptnavigation">
@@ -87,7 +91,7 @@ function LegalHeader(){
 
 function LegalFooter(){
   return <footer>
-    <a href="/" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, Startseite"><strong>STUDIO HERNÁNDEZ</strong></a>
+    <a href="/" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, Startseite"><strong><BrandName className="brand-name--footer"/></strong></a>
     <div><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
     <div className="footer__legal">
       <a href="/impressum/">Impressum</a>
