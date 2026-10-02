@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import SiteRoot from './SiteEnhancements'
 import HausCImageUpgrade from './HausCImageUpgrade'
 import HeroImageUpgrade from './HeroImageUpgrade'
-import ProjectContentUpgrade from './ProjectContentUpgrade'
 import Seo from './Seo'
 import './styles.css'
 import './brand-overrides.css'
@@ -16,6 +15,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <SiteRoot />
     <HausCImageUpgrade />
     <HeroImageUpgrade />
-    <ProjectContentUpgrade />
   </React.StrictMode>,
 )
