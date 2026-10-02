@@ -103,9 +103,14 @@
 }
 
 .wordmark--footer strong{
-  font-size:.69rem;
+  font-size:.92rem;
   line-height:1.35;
   white-space:nowrap;
+}
+
+.wordmark--footer .brand-name{
+  transform:scale(1.04);
+  transform-origin:left baseline;
 }
 
 .back-to-top{
