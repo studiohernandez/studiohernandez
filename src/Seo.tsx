@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 const BASE_URL = 'https://studiohernandez.eu'
-const DEFAULT_IMAGE = `${BASE_URL}/img/projects/haus-c/01-hero-baustelle.jpeg`
+const DEFAULT_IMAGE = `${BASE_URL}/img/01-hero-studiohernandez.webp`
 
 type SeoConfig = {
   title: string
