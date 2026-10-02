@@ -63,7 +63,7 @@
   gap:0;
   width:max-content;
   min-width:max-content;
-  font-size:clamp(1.45rem,2vw,2.15rem);
+  font-size:.69rem;
   line-height:.9;
   letter-spacing:-.055em;
   text-transform:uppercase;
@@ -83,7 +83,7 @@
   padding-top:.2rem;
   justify-self:start;
   align-self:start;
-  font-size:.58rem;
+  font-size:.69rem;
   line-height:1.2;
   letter-spacing:.1em;
   text-transform:uppercase;
@@ -91,6 +91,8 @@
 }
 
 .wordmark--footer strong{
+  font-size:.69rem;
+  line-height:1.35;
   white-space:nowrap;
 }
 
@@ -146,7 +148,7 @@
 
 @media(max-width:800px){
   .site-header .wordmark--header .wordmark__brand{
-    font-size:clamp(1.1rem,4.5vw,1.45rem);
+    font-size:.69rem;
   }
 
   .back-to-top{
@@ -174,13 +176,19 @@
 
 /* Keep the wordmark consistent while respecting each context. */
 .studio__intro .brand-name{
+  display:flex;
+  width:max-content;
   font-size:.82em;
   line-height:1;
   letter-spacing:-.065em;
   vertical-align:baseline;
   transform:scaleX(.96);
   transform-origin:left bottom;
-  margin-right:-.02em;
+  margin:0 0 .18em 0;
+}
+
+.studio__intro-copy{
+  display:block;
 }
 
 .studio__intro .brand-name__studio{
