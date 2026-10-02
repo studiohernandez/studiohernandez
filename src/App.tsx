@@ -45,7 +45,6 @@ const services = [
 const imageUrl=(name:string)=>`/img/${name}`
 const hausCImageUrl=(name:string)=>`/img/projects/haus-c/${name}`
 const hausH33PhotoUrl=(name:string)=>`/img/projects/haus-h33/photos/${name}`
-const hausH33PlanUrl=(name:string)=>`/img/projects/haus-h33/plans/${name}`
 
 function ArrowLink({href,children}:{href:string;children:React.ReactNode}){
   return <a className="arrow-link" href={href}>{children}<span aria-hidden="true">↗</span></a>
@@ -239,14 +238,6 @@ function ProjectImage({src, alt, className='', fallback='haus-c.png'}:{src:strin
   return <img className={className} src={imageSrc} alt={alt} loading="lazy" onError={()=>setImageSrc(imageUrl(fallback))} />
 }
 
-function PlanFigure({src,alt}:{src:string;alt:string}){
-  return <figure className="project-page__plan">
-    <a href={src} target="_blank" rel="noreferrer" aria-label={`${alt} in voller Größe öffnen`}>
-      <img src={src} alt={alt} loading="lazy"/>
-    </a>
-  </figure>
-}
-
 function HausCPage(){
   return <>
     <main id="top" className="project-page">
@@ -260,7 +251,7 @@ function HausCPage(){
           </div>
         </div>
         <figure className="project-page__hero-image">
-          <ProjectImage src={hausCImageUrl('01-hero-baustelle.jpeg')} alt="HAUS C – Baustellenaufnahme der Aufstockung"/>
+          <ProjectImage src={hausCImageUrl('01-hero-baustelle-aktuell.webp')} alt="HAUS C – aktueller Baustand der Aufstockung in Wuppertal"/>
         </figure>
       </section>
 
@@ -354,32 +345,13 @@ function HausH33Page(){
         </div>
       </section>
 
-      <section className="project-page__block section">
+      <section className="project-page__block section section--last">
         <div className="project-page__label">BESTAND / GARTEN FRONTAL</div>
         <figure className="project-page__full-image"><ProjectImage src={hausH33PhotoUrl('07-garten-frontal.png')} fallback="haus-h33.png" alt="HAUS H33 – frontale Gartenansicht"/></figure>
       </section>
 
-      <section className="project-page__block section project-page__plans-section">
-        <div className="project-page__label">BESTANDSPLÄNE / SCHNITT</div>
-        <PlanFigure src={hausH33PlanUrl('01-bestand-schnitt-original.png')} alt="HAUS H33 – Bestandschnitt"/>
-        <p className="project-page__caption">Originale Bestandsunterlage · zur vergrößerten Ansicht anklicken.</p>
-      </section>
 
-      <section className="project-page__block section project-page__plans-section">
-        <div className="project-page__label">BESTANDSPLÄNE / ANSICHTEN</div>
-        <div className="project-page__plan-grid">
-          <PlanFigure src={hausH33PlanUrl('02-bestand-ansichten-west-original.png')} alt="HAUS H33 – Bestandsansichten West"/>
-          <PlanFigure src={hausH33PlanUrl('03-bestand-ansichten-sued-ost-original.png')} alt="HAUS H33 – Bestandsansichten Süd und Ost"/>
-        </div>
-      </section>
 
-      <section className="project-page__block section section--last project-page__plans-section">
-        <div className="project-page__label">BESTANDSPLÄNE / GRUNDRISSE</div>
-        <div className="project-page__plan-grid">
-          <PlanFigure src={hausH33PlanUrl('04-bestand-grundriss-kellergeschoss-original.png')} alt="HAUS H33 – Bestandsgrundriss Kellergeschoss"/>
-          <PlanFigure src={hausH33PlanUrl('05-bestand-grundriss-erdgeschoss-original.png')} alt="HAUS H33 – Bestandsgrundriss Erdgeschoss"/>
-        </div>
-      </section>
 
       <section className="project-page__next section">
         <ArrowLink href="/projekte/haus-c/">Vorheriges Projekt · HAUS C</ArrowLink>
