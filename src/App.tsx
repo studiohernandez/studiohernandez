@@ -174,7 +174,7 @@ function HomePage(){
           </div>
         </div>
         <figure className="hero__image">
-          <img src={imageUrl('hero-house.png')} alt="Zeitgenössische Erweiterung eines Wohnhauses" fetchPriority="high"/>
+          <img src={imageUrl('01-hero-studiohernandez.webp')} alt="HAUS C – Aufstockung eines Wohnhauses in Wuppertal" fetchPriority="high"/>
           <figcaption><span>Wuppertal, DE</span><span>51° 15′ N</span></figcaption>
         </figure>
       </section>
