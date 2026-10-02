@@ -119,7 +119,8 @@ function DatenschutzContent(){
 
     <LegalSection title="5. Cookies und lokale Speicherung">
       <p>Die Website selbst setzt derzeit keine Analyse-, Werbe- oder Marketing-Cookies ein. Eine Einwilligung zur Darstellung der lokal eingebundenen Schriftarten ist nicht erforderlich.</p>
-      <p>Technisch erforderliche Verarbeitungen im Zusammenhang mit dem Hosting und der sicheren Auslieferung der Website richten sich nach den Angaben unter „Hosting und technische Bereitstellung“.</p>
+      <p>Im Rahmen der sicheren technischen Bereitstellung kann Cloudflare abhängig von den aktivierten Sicherheits- und Schutzfunktionen technisch erforderliche Cookies setzen. Dazu können insbesondere Cookies zur Bot- und Missbrauchserkennung, zur Durchführung von Sicherheitsprüfungen oder zur Begrenzung missbräuchlicher Anfragen gehören, zum Beispiel <code>__cf_bm</code>, <code>cf_clearance</code> oder <code>_cfuvid</code>. Diese Cookies dienen nicht der werblichen Nutzerverfolgung, sondern der Sicherheit und Funktionsfähigkeit der Website.</p>
+      <p>Weitere technisch erforderliche Verarbeitungen im Zusammenhang mit dem Hosting und der sicheren Auslieferung der Website richten sich nach den Angaben unter „Hosting und technische Bereitstellung“.</p>
     </LegalSection>
 
     <LegalSection title="6. Ihre Rechte">
