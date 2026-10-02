@@ -212,7 +212,7 @@ function HomePage(){
           </figure>
           <div className="studio__content">
             <p className="eyebrow">Danyel Hernández<br/>Architekt M.Sc.</p>
-            <p className="studio__intro"><BrandName className="brand-name--intro"/> entwickelt Architektur aus dem Bestand heraus.</p>
+            <p className="studio__intro"><BrandName className="brand-name--intro"/><span className="studio__intro-copy">entwickelt Architektur aus dem Bestand heraus.</span></p>
             <p>Bestehende Gebäude besitzen Strukturen, Materialien und Geschichten. Mein Ansatz besteht nicht darin, diese zu überdecken, sondern ihre Potenziale zu erkennen und weiterzuentwickeln.</p>
             <div className="vita">
               <div><span>Ausbildung</span><p>Bergische Universität Wuppertal<br/>Universidad de Granada<br/>TU Dortmund</p></div>
