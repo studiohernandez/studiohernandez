@@ -46,6 +46,10 @@ const imageUrl=(name:string)=>`/img/${name}`
 const hausCImageUrl=(name:string)=>`/img/projects/haus-c/${name}`
 const hausH33PhotoUrl=(name:string)=>`/img/projects/haus-h33/photos/${name}`
 
+function BrandName({className=''}:{className?:string}){
+  return <span className={`brand-name ${className}`.trim()} aria-label="STUDIO HERNÁNDEZ"><span className="brand-name__studio">STUDIO</span><span className="brand-name__hernandez">HERNÁNDEZ</span></span>
+}
+
 function ArrowLink({href,children}:{href:string;children:React.ReactNode}){
   return <a className="arrow-link" href={href}>{children}<span aria-hidden="true">↗</span></a>
 }
@@ -125,7 +129,7 @@ function Header({menuOpen,setMenuOpen}:{menuOpen:boolean;setMenuOpen:(v:boolean)
   const closeMenu=()=>setMenuOpen(false)
   return <header className="site-header">
     <a href="/" className="wordmark wordmark--header" aria-label="STUDIO HERNÁNDEZ, Startseite">
-      <strong className="wordmark__brand"><span className="wordmark__studio">STUDIO</span><span className="wordmark__name">HERNÁNDEZ</span></strong>
+      <strong className="wordmark__brand"><BrandName className="brand-name--header"/></strong>
     </a>
     <p className="header-meta">ARCHITEKTUR · WUPPERTAL</p>
     <nav id="navigation" className={menuOpen?'nav nav--open':'nav'} aria-label="Hauptnavigation">
@@ -142,7 +146,7 @@ function Header({menuOpen,setMenuOpen}:{menuOpen:boolean;setMenuOpen:(v:boolean)
 
 function Footer(){
   return <footer>
-    <a href="#top" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, nach oben"><strong>STUDIO HERNÁNDEZ</strong></a>
+    <a href="#top" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, nach oben"><strong><BrandName className="brand-name--footer"/></strong></a>
     <div><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
     <div><a href="#top">Nach oben ↑</a><p>© {new Date().getFullYear()}</p></div>
   </footer>
@@ -208,11 +212,11 @@ function HomePage(){
           </figure>
           <div className="studio__content">
             <p className="eyebrow">Danyel Hernández<br/>Architekt M.Sc.</p>
-            <p className="studio__intro">STUDIO HERNÁNDEZ entwickelt Architektur aus dem Bestand heraus.</p>
+            <p className="studio__intro"><BrandName className="brand-name--intro"/> entwickelt Architektur aus dem Bestand heraus.</p>
             <p>Bestehende Gebäude besitzen Strukturen, Materialien und Geschichten. Mein Ansatz besteht nicht darin, diese zu überdecken, sondern ihre Potenziale zu erkennen und weiterzuentwickeln.</p>
             <div className="vita">
               <div><span>Ausbildung</span><p>Bergische Universität Wuppertal<br/>Universidad de Granada<br/>TU Dortmund</p></div>
-              <div><span>Praxis</span><p>Rocho Architekten<br/>ACMS Architekten<br/>STUDIO HERNÁNDEZ</p></div>
+              <div><span>Praxis</span><p>Rocho Architekten<br/>ACMS Architekten<br/><BrandName className="brand-name--vita"/></p></div>
             </div>
             <p className="membership">Mitglied der Architektenkammer Nordrhein-Westfalen</p>
           </div>
