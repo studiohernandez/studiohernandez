@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://studiohernandez.eu/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://studiohernandez.eu/img/01-hero-studiohernandez.webp</image:loc>
+      <image:title>STUDIO HERNÁNDEZ – Architektur für den Bestand</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://studiohernandez.eu/projekte/haus-c/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://studiohernandez.eu/img/projects/haus-c/01-hero-baustelle-aktuell.webp</image:loc>
+      <image:title>HAUS C – Aufstockung in Wuppertal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://studiohernandez.eu/projekte/haus-h33/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://studiohernandez.eu/img/projects/haus-h33/photos/01-strasse.png</image:loc>
+      <image:title>HAUS H33 – Erweiterung in Wuppertal</image:title>
+    </image:image>
+  </url>
+</urlset>

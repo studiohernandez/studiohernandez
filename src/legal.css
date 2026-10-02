@@ -1,0 +1,88 @@
+footer .footer__contact,
+footer .footer__legal{
+  align-self:start;
+  padding-top:0;
+  margin-top:0;
+}
+
+footer .footer__contact p,
+footer .footer__legal a{
+  margin-top:0;
+  line-height:1.35;
+}
+
+footer .footer__contact p{
+  margin-bottom:.25rem;
+}
+
+footer .footer__legal{
+  display:flex;
+  flex-direction:column;
+  gap:.45rem;
+}
+
+/* Rechtliche Seiten, Footer-Links und Datenschutz-Banner */
+footer{grid-template-columns:1.2fr 1fr 1fr .75fr;gap:2rem}
+footer .footer__legal{justify-items:start;align-content:start;text-align:left;grid-column:3}
+footer>div:nth-of-type(2):not(.footer__legal){grid-column:4;text-align:right}
+footer .footer__end{grid-column:4;text-align:right}
+.footer__button{appearance:none;border:0;background:transparent;color:inherit;padding:0;margin:0;display:block;width:max-content;font:inherit;letter-spacing:inherit;text-transform:inherit;text-align:left;line-height:inherit;cursor:pointer}
+.footer__legal a{display:block;width:max-content}
+.footer__legal a,.footer__button{opacity:.72;transition:opacity .25s ease}
+.footer__legal a:hover,.footer__button:hover{opacity:1}
+
+.legal-page{padding:clamp(5rem,9vw,9rem) var(--pad) clamp(7rem,11vw,12rem);min-height:75svh}
+.legal-page__head{display:grid;grid-template-columns:20% 1fr 20%;align-items:end;padding-bottom:clamp(3rem,6vw,6rem);border-bottom:1px solid var(--line)}
+.legal-page__head h1{font-size:clamp(4.5rem,10vw,10rem)}
+.legal-page__head>p:last-child{font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;text-align:right}
+.legal-page__content{max-width:76rem;margin-left:20%}
+.legal-section{display:grid;grid-template-columns:minmax(12rem,.72fr) 1.6fr;gap:clamp(2rem,5vw,6rem);padding:3rem 0;border-bottom:1px solid var(--line)}
+.legal-section h2{font-family:"Manrope",sans-serif;font-size:.78rem;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.legal-section__copy{max-width:48rem;font-size:.88rem;line-height:1.75}
+.legal-section__copy p{margin:0 0 1.3rem}.legal-section__copy p:last-child{margin-bottom:0}
+.legal-section__copy a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+
+.privacy-banner{position:fixed;left:var(--pad);right:var(--pad);bottom:1rem;z-index:1000;background:var(--paper);color:var(--ink);border:1px solid var(--ink);padding:1.25rem;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(2rem,5vw,6rem);align-items:end;box-shadow:0 10px 40px rgba(0,0,0,.08)}
+.privacy-banner__copy{max-width:52rem}.privacy-banner__copy>p:not(.eyebrow){font-size:.78rem;line-height:1.65;margin:.7rem 0}.privacy-banner__copy>a{font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:.25em}
+.privacy-banner__actions{display:flex;gap:.65rem;align-items:center;position:relative;padding-right:1.8rem}
+.privacy-button{border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:.85rem 1rem;min-width:10rem;font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;cursor:pointer}
+.privacy-button--secondary{background:transparent;color:var(--ink)}
+.privacy-close{position:absolute;right:0;top:-2.7rem;border:0;background:transparent;color:inherit;font-size:1.35rem;line-height:1;cursor:pointer}
+
+@media(max-width:800px){
+  footer{grid-template-columns:1fr 1fr;gap:3rem}footer>.wordmark{grid-column:span 2;grid-row:auto}footer .footer__contact,footer .footer__legal,footer>div:nth-of-type(2):not(.footer__legal),footer .footer__end{grid-column:auto;grid-row:auto;text-align:left}
+  .legal-header .nav{display:none}
+  .legal-page__head{grid-template-columns:1fr;gap:1.25rem}.legal-page__head>p:last-child{text-align:left}
+  .legal-page__content{margin-left:0}.legal-section{grid-template-columns:1fr;gap:1rem;padding:2.2rem 0}
+  .privacy-banner{grid-template-columns:1fr;gap:1.2rem;bottom:.75rem}.privacy-banner__actions{display:grid;grid-template-columns:1fr 1fr;padding-right:0}.privacy-button{min-width:0}.privacy-close{right:0;top:-1.8rem}
+}
+@media(max-width:480px){.privacy-banner__actions{grid-template-columns:1fr}.legal-page__head h1{font-size:clamp(3.8rem,18vw,6rem)}}
+
+
+
+@media(min-width:801px){
+  footer > .wordmark{
+    grid-column:1;
+    grid-row:1;
+  }
+
+  footer > .footer__contact{
+    grid-column:2;
+    grid-row:1;
+    align-self:start;
+  }
+
+  footer > .footer__legal{
+    grid-column:3;
+    grid-row:1;
+    align-self:start;
+  }
+
+  footer > div:nth-of-type(2):not(.footer__legal),
+  footer > .footer__end{
+    grid-column:4;
+    grid-row:1;
+    align-self:start;
+    text-align:right;
+  }
+}
