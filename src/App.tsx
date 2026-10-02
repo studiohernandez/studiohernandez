@@ -147,18 +147,37 @@ function Header({menuOpen,setMenuOpen}:{menuOpen:boolean;setMenuOpen:(v:boolean)
 function Footer(){
   return <footer>
     <a href="#top" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, nach oben"><strong><BrandName className="brand-name--footer"/></strong></a>
-    <div><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
+    <div className="footer__contact"><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
     <div><a href="#top">Nach oben ↑</a><p>© {new Date().getFullYear()}</p></div>
   </footer>
 }
 
 function BackToTop(){
   const [showBackToTop,setShowBackToTop]=useState(false)
+
   useEffect(()=>{
-    const handleScroll=()=>setShowBackToTop(window.scrollY > Math.max(420, window.innerHeight * .55))
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive:true })
-    return ()=>window.removeEventListener('scroll', handleScroll)
+    let footerVisible=false
+
+    const updateVisibility=()=>{
+      setShowBackToTop(
+        window.scrollY > Math.max(420, window.innerHeight * .55) && !footerVisible
+      )
+    }
+
+    const footer=document.querySelector('footer')
+    const observer=footer ? new IntersectionObserver(([entry])=>{
+      footerVisible=entry.isIntersecting
+      updateVisibility()
+    },{threshold:.02}) : null
+
+    if(footer && observer) observer.observe(footer)
+    updateVisibility()
+    window.addEventListener('scroll',updateVisibility,{passive:true})
+
+    return()=>{
+      window.removeEventListener('scroll',updateVisibility)
+      observer?.disconnect()
+    }
   },[])
 
   return <a className={showBackToTop?'back-to-top back-to-top--visible':'back-to-top'} href="#top" aria-label="Nach oben scrollen">
