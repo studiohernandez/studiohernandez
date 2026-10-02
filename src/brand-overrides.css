@@ -44,12 +44,17 @@
 }
 
 .site-header{
+  height:auto;
+  min-height:4.5rem;
   grid-template-columns:max-content minmax(5rem,1fr) auto;
   column-gap:clamp(1.5rem,3vw,4rem);
+  align-items:baseline;
 }
 
 .site-header .wordmark--header{
-  display:block;
+  display:inline-flex;
+  align-items:baseline;
+  align-self:baseline;
   width:max-content;
   min-width:max-content;
   white-space:nowrap;
@@ -64,7 +69,7 @@
   width:max-content;
   min-width:max-content;
   font-size:.69rem;
-  line-height:.9;
+  line-height:1.35;
   letter-spacing:-.055em;
   text-transform:uppercase;
   white-space:nowrap;
@@ -80,14 +85,19 @@
 
 .header-meta{
   margin:0;
-  padding-top:.2rem;
+  padding-top:0;
   justify-self:start;
-  align-self:start;
+  align-self:baseline;
   font-size:.69rem;
-  line-height:1.2;
+  line-height:1.35;
   letter-spacing:.1em;
   text-transform:uppercase;
   white-space:nowrap;
+}
+
+.site-header .nav{
+  align-self:baseline;
+  padding-top:0;
 }
 
 .wordmark--footer strong{
