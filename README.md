@@ -17,3 +17,4 @@ npm run dev
 ```
 
 The production site is configured for Netlify through `netlify.toml`.
+
