@@ -34,7 +34,7 @@ function LegalHeader(){
 function LegalFooter(){
   return <footer>
     <a href="/" className="wordmark wordmark--footer" aria-label="STUDIO HERNÁNDEZ, Startseite"><strong><BrandName className="brand-name--footer"/></strong></a>
-    <div><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
+    <div className="footer__contact"><p>Architektur · Wuppertal</p><a href="mailto:mail@studiohernandez.eu">mail@studiohernandez.eu</a></div>
     <div className="footer__legal">
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
