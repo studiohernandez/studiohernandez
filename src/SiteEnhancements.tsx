@@ -2,65 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import App from './App'
 
-const CONSENT_KEY='studiohernandez-consent-v1'
-const FONT_LINK_ID='studiohernandez-google-fonts'
-
 function BrandName({className=''}:{className?:string}){
   return <span className={`brand-name ${className}`.trim()} aria-label="STUDIO HERNÁNDEZ"><span className="brand-name__studio">STUDIO</span><span className="brand-name__hernandez">HERNÁNDEZ</span></span>
-}
-
-function loadExternalFonts(){
-  if(document.getElementById(FONT_LINK_ID)) return
-  const link=document.createElement('link')
-  link.id=FONT_LINK_ID
-  link.rel='stylesheet'
-  link.href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,300&display=swap'
-  document.head.appendChild(link)
-}
-
-function CookieConsent(){
-  const [open,setOpen]=useState(false)
-  const [choice,setChoice]=useState<'all'|'necessary'|null>(null)
-
-  useEffect(()=>{
-    let stored:null|'all'|'necessary'=null
-    try{ stored=localStorage.getItem(CONSENT_KEY) as null|'all'|'necessary' }catch{}
-    setChoice(stored)
-    if(stored==='all') loadExternalFonts()
-    if(!stored) setOpen(true)
-
-    const reopen=()=>setOpen(true)
-    window.addEventListener('studiohernandez:privacy-settings',reopen)
-    return()=>window.removeEventListener('studiohernandez:privacy-settings',reopen)
-  },[])
-
-  const save=(next:'all'|'necessary')=>{
-    const hadExternalFonts=!!document.getElementById(FONT_LINK_ID)
-    try{ localStorage.setItem(CONSENT_KEY,next) }catch{}
-    setChoice(next)
-    if(next==='all') loadExternalFonts()
-    setOpen(false)
-    if(next==='necessary' && hadExternalFonts) window.location.reload()
-  }
-
-  if(!open) return null
-
-  return <aside className="privacy-banner" role="dialog" aria-labelledby="privacy-title">
-    <div className="privacy-banner__copy">
-      <p className="eyebrow" id="privacy-title">Cookie-Einstellungen</p>
-      <p>Diese Website verwendet keine Analyse- oder Marketing-Cookies. Externe Schriftarten von Google werden nur nach Ihrer Zustimmung geladen. Ihre Auswahl wird ausschließlich lokal in Ihrem Browser gespeichert.</p>
-      <a href="/datenschutz/">Mehr zum Datenschutz ↗</a>
-    </div>
-    <div className="privacy-banner__actions">
-      <button type="button" className="privacy-button privacy-button--secondary" onClick={()=>save('necessary')}>Nur erforderlich</button>
-      <button type="button" className="privacy-button" onClick={()=>save('all')}>Alle akzeptieren</button>
-      {choice && <button type="button" className="privacy-close" onClick={()=>setOpen(false)} aria-label="Cookie-Einstellungen schließen">×</button>}
-    </div>
-  </aside>
-}
-
-function PrivacySettingsButton(){
-  return <button type="button" className="footer__button" onClick={()=>window.dispatchEvent(new Event('studiohernandez:privacy-settings'))}>Cookie-Einstellungen</button>
 }
 
 function FooterLegalLinks(){
@@ -70,7 +13,6 @@ function FooterLegalLinks(){
   return createPortal(<div className="footer__legal">
     <a href="/impressum/">Impressum</a>
     <a href="/datenschutz/">Datenschutz</a>
-    <PrivacySettingsButton/>
   </div>,target)
 }
 
@@ -96,7 +38,6 @@ function LegalFooter(){
     <div className="footer__legal">
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
-      <PrivacySettingsButton/>
     </div>
     <div className="footer__end"><a href="#top">Nach oben ↑</a><p>© {new Date().getFullYear()}</p></div>
   </footer>
@@ -113,7 +54,7 @@ function LegalLayout({kind}:{kind:'impressum'|'datenschutz'}){
       <header className="legal-page__head">
         <p className="eyebrow">Rechtliches / {kind==='impressum'?'01':'02'}</p>
         <h1>{kind==='impressum'?'Impressum':'Datenschutz'}</h1>
-        <p>Stand: September 2026</p>
+        <p>Stand: Oktober 2026</p>
       </header>
       {kind==='impressum'?<ImpressumContent/>:<DatenschutzContent/>}
     </main>
@@ -172,14 +113,13 @@ function DatenschutzContent(){
       <p>Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
     </LegalSection>
 
-    <LegalSection title="4. Externe Schriftarten / Google Fonts">
-      <p>Für die typografische Darstellung können Schriftarten des Dienstes Google Fonts geladen werden. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Die Verbindung zu Google wird erst hergestellt, wenn Sie im Datenschutz-Banner ausdrücklich „Alle akzeptieren“ wählen. Dabei kann insbesondere Ihre IP-Adresse an Google übermittelt werden.</p>
-      <p>Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Soweit dabei Informationen auf Ihrem Endgerät gespeichert oder ausgelesen werden, erfolgt dies ebenfalls nur mit Ihrer Einwilligung nach § 25 Abs. 1 TDDDG, soweit diese Vorschrift anwendbar ist. Sie können Ihre Einwilligung jederzeit über „Cookie-Einstellungen“ im Footer mit Wirkung für die Zukunft widerrufen.</p>
+    <LegalSection title="4. Lokale Schriftarten">
+      <p>Für die typografische Darstellung verwendet diese Website die Schriftarten Manrope und Newsreader. Die benötigten Schriftdateien werden lokal zusammen mit der Website ausgeliefert. Beim Laden der Schriftarten wird keine Verbindung zu Google Fonts oder einem anderen externen Schriftanbieter hergestellt.</p>
     </LegalSection>
 
-    <LegalSection title="5. Cookie-Einstellungen und lokale Speicherung">
-      <p>Zur Speicherung Ihrer Datenschutzentscheidung wird ausschließlich eine technisch notwendige Information im lokalen Speicher Ihres Browsers (Local Storage) unter dem Schlüssel „studiohernandez-consent-v1“ abgelegt. Sie enthält nur die Auswahl „Alle akzeptieren“ oder „Nur erforderlich“ und dient dazu, Ihre Entscheidung bei weiteren Seitenaufrufen zu berücksichtigen.</p>
-      <p>Diese Speicherung ist für die Bereitstellung der von Ihnen gewählten Datenschutzeinstellung erforderlich. Analyse-, Werbe- oder Marketing-Cookies werden derzeit nicht eingesetzt.</p>
+    <LegalSection title="5. Cookies und lokale Speicherung">
+      <p>Die Website selbst setzt derzeit keine Analyse-, Werbe- oder Marketing-Cookies ein. Eine Einwilligung zur Darstellung der lokal eingebundenen Schriftarten ist nicht erforderlich.</p>
+      <p>Technisch erforderliche Verarbeitungen im Zusammenhang mit dem Hosting und der sicheren Auslieferung der Website richten sich nach den Angaben unter „Hosting und technische Bereitstellung“.</p>
     </LegalSection>
 
     <LegalSection title="6. Ihre Rechte">
@@ -207,6 +147,5 @@ export default function SiteRoot(){
 
   return <>
     {legal?<LegalLayout kind={legal}/>:<><App/><FooterLegalLinks/></>}
-    <CookieConsent/>
   </>
 }
