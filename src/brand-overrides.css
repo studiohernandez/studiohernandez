@@ -172,25 +172,44 @@
 }
 
 
-/* Keep the wordmark identical in the Studio and Vita areas. */
+/* Keep the wordmark consistent while respecting each context. */
 .studio__intro .brand-name{
-  letter-spacing:-.055em;
+  font-size:.82em;
+  line-height:1;
+  letter-spacing:-.065em;
+  vertical-align:baseline;
+  transform:scaleX(.96);
+  transform-origin:left bottom;
+  margin-right:-.02em;
 }
 
 .studio__intro .brand-name__studio{
+  font-size:inherit;
+  line-height:inherit;
   font-weight:400;
 }
 
 .studio__intro .brand-name__hernandez{
+  font-size:inherit;
+  line-height:inherit;
   font-weight:700;
 }
 
-.vita .brand-name,
-.vita .brand-name__studio,
-.vita .brand-name__hernandez{
+.vita .brand-name{
+  font-size:inherit;
+  line-height:inherit;
   opacity:1;
   letter-spacing:-.055em;
   text-transform:uppercase;
+}
+
+.vita .brand-name__studio,
+.vita .brand-name__hernandez{
+  font-size:inherit;
+  line-height:inherit;
+  opacity:1;
+  letter-spacing:inherit;
+  text-transform:inherit;
 }
 
 .vita .brand-name__studio{
